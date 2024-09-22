@@ -5,9 +5,9 @@ import { StyleSheet, Text, View } from "react-native";
 export default function App() {
   return (
     <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-3xl text-primary font-bold">Gaze App</Text>
+      <Text className="text-3xl text-primary font-pxbold">Gaze App</Text>
       <StatusBar style="auto" />
-      <Link href="/profile">Profile-er</Link>
+      <Link href="/feed">Home-er</Link>
     </View>
   );
 }
