@@ -9,7 +9,7 @@ const TabsLayout = () => {
       <Tabs
         screenOptions={{
           tabBarShowLabel: false,
-          tabBarActiveTintColor: "#FD6363",
+          tabBarActiveTintColor: "#2D5DEC",
         }}
       >
         <Tabs.Screen
@@ -22,7 +22,7 @@ const TabsLayout = () => {
           }}
         />
         <Tabs.Screen
-          name="matches"
+          name="connections"
           options={{
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (

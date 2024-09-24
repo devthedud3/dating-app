@@ -2,11 +2,12 @@
 // tailwind.config.js
 
 module.exports = {
+  purge: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        primary: "#FD6363",
+        primary: "#2D5DEC",
         background: "#F7CBCB",
       },
       fontFamily: {
@@ -17,7 +18,7 @@ module.exports = {
         pxbold: ["Poppins-ExtraBold", "sans-serif"],
         pxboldi: ["Poppins-ExtraBoldItalic", "sans-serif"],
         pregular: ["Poppins-Regular", "sans-serif"],
-        psemiBold: ["Poppins-SemiBold", "sans-serif"],
+        psemibold: ["Poppins-SemiBold", "sans-serif"],
         plight: ["Poppins-Light", "sans-serif"],
         pthin: ["Poppins-Thin", "sans-serif"],
       },

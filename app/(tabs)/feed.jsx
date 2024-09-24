@@ -1,11 +1,13 @@
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 import React from "react";
 
 const Feed = () => {
   return (
-    <View className="flex-1 items-center justify-center">
-      <Text>Feed</Text>
-    </View>
+    <SafeAreaView className="flex-1 items-center">
+      <View className="w-full p-4">
+        <Text className="text-xs font-pbold text-gray-500">EVENTS</Text>
+      </View>
+    </SafeAreaView>
   );
 };
 
