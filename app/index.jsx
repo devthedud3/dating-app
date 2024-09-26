@@ -44,7 +44,7 @@ export default function App() {
             handlePress={() => router.push("/sign-up")}
           />
           <Text className="text-xs mt-2 text-center">
-            By signing in you agree to Gaze's Terms and Conditions and our
+            By signing in you agree to Bridge's Terms and Conditions and our
             Privacy Policy.
           </Text>
         </View>
