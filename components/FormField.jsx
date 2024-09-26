@@ -5,6 +5,7 @@ import { TouchableOpacity } from "react-native";
 
 const FormField = ({ name, value, onChange, keyboardType, formStyles }) => {
   const [isVisible, setIsVisible] = useState(false);
+
   return (
     <View className={`space-y-2 ${formStyles}`}>
       <Text className="text-sm font-pregular">{name}</Text>
@@ -12,17 +13,20 @@ const FormField = ({ name, value, onChange, keyboardType, formStyles }) => {
         <TextInput
           className="flex-1 font-psemibolds"
           value={value}
-          onChange={onChange}
+          onChangeText={onChange}
+          keyboardType={keyboardType}
+          autoCapitalize={false}
           secureTextEntry={keyboardType === "password" && !isVisible}
         />
-        <TouchableOpacity className="" onPress={() => setIsVisible(!isVisible)}>
-          {keyboardType === "password" &&
-            (!isVisible ? (
-              <Feather name="eye" size={18} color="black" />
-            ) : (
-              <Feather name="eye-off" size={18} color="black" />
-            ))}
-        </TouchableOpacity>
+        {keyboardType === "password" && (
+          <TouchableOpacity onPress={() => setIsVisible(!isVisible)}>
+            <Feather
+              name={!isVisible ? "eye" : "eye-off"}
+              size={18}
+              color="black"
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
