@@ -1,5 +1,5 @@
 {
-  "name": "gaze",
+  "name": "bridge",
   "version": "1.0.0",
   "main": "expo-router/entry",
   "scripts": {
@@ -12,12 +12,14 @@
     "@expo/metro-runtime": "~3.2.3",
     "@expo/vector-icons": "^14.0.3",
     "@react-navigation/native": "^6.1.18",
+    "axios": "^1.7.7",
     "expo-constants": "~16.0.2",
     "expo-font": "^12.0.10",
     "expo-linking": "~6.3.1",
     "expo-router": "~3.5.23",
     "expo-status-bar": "~1.12.1",
     "nativewind": "^2.0.11",
+    "pg": "^8.13.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.5",
