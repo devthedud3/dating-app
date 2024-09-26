@@ -7,7 +7,7 @@ const Back = () => {
   return (
     <View className="w-full px-4 h-16 justify-center">
       <TouchableOpacity
-        className="w-8 h-8 justify-center items-center"
+        className="w-8 h-8 justify-center items-center  rounded-full"
         onPress={() => {
           router.back();
         }}
