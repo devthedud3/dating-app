@@ -51,7 +51,7 @@ const SignUp = () => {
         email: "",
         password: "",
       });
-      router.push("/sign-in");
+      router.replace("/sign-in");
     } catch (error) {
       Alert.alert("Error", error.message || "An unknown error occurred.");
     } finally {
@@ -62,7 +62,6 @@ const SignUp = () => {
   return (
     <SafeAreaView className="h-full flex items-center justify-center">
       <Back />
-
       <View className="px-4 w-full min-h-[83vh] items-center">
         <Image
           source={icons.logo_small}
