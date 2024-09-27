@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, SafeAreaView, Image, Alert } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  Alert,
+  TouchableOpacity,
+} from "react-native";
 import { Link, router } from "expo-router";
 
 import FormField from "../../components/FormField";
@@ -9,14 +16,17 @@ import Back from "../../components/Back";
 import { icons } from "../../assets";
 import { login } from "../../lib/authFunctions";
 import { isValidEmail } from "../../lib/helper";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 const SignIn = () => {
+  const { setUser, setIsLoading, setIsLoggedIn } = useGlobalContext();
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [remember, setRemember] = useState(false);
 
   const authenticate = async () => {
     let inputError = isValidEmail(form.email);
@@ -25,16 +35,22 @@ const SignIn = () => {
     setIsSubmitting(true);
 
     try {
-      const data = await login(form);
+      const { user, error } = await login(form);
 
-      if (data.error) {
-        throw new Error(data.error);
+      if (error) {
+        throw new Error(error);
       }
+
       setForm({
         email: "",
         password: "",
       });
-      router.push("/feed");
+
+      setUser(user);
+      setIsLoggedIn(true);
+      setIsLoading(false);
+
+      router.replace("/");
     } catch (error) {
       Alert.alert("Error", error.message || "An unknown error occurred.");
     } finally {
@@ -57,7 +73,7 @@ const SignIn = () => {
           Your next opportunity could be right next door, just waiting for you.
         </Text>
         <FormField
-          name="Email"
+          name="Email Address"
           value={form.email}
           formStyles="mt-5 w-full"
           keyboardType="email-address"
@@ -70,6 +86,25 @@ const SignIn = () => {
           keyboardType="password"
           onChange={(text) => setForm({ ...form, password: text })}
         />
+        <View className="flex flex-row w-full items-center justify-between">
+          <View className="py-4 flex flex-row gap-2 items-center justify-center">
+            <View
+              className="p-[2px] border rounded-full"
+              onPress={() => setRemember(!remember)}
+            >
+              <TouchableOpacity
+                onPress={() => setRemember(!remember)}
+                className={`h-3 w-3 rounded-full ${remember && "bg-black"}`}
+              />
+            </View>
+            <Text className="font-pregular text-sm">Remember me</Text>
+          </View>
+          <View className="py-2 flex flex-row gap-2 items-center justify-center">
+            <Link className="font-pregular text-sm" href="/reset-password">
+              Forgot password?
+            </Link>
+          </View>
+        </View>
         <Btn
           title="Log In"
           containerStyles="w-full mt-5"
