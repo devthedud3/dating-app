@@ -1,11 +1,16 @@
-import { Link, router } from "expo-router";
-import { SafeAreaView, Text, View, Image, ScrollView } from "react-native";
+import { Link, Redirect, router } from "expo-router";
+import { SafeAreaView, Text, View, Image } from "react-native";
 
 import i2 from "../assets/signup_1.png";
 import Btn from "../components/Btn";
 import { icons } from "../assets";
+import { useGlobalContext } from "../context/GlobalContext";
 
 export default function App() {
+  const { isLoading, isLoggedIn } = useGlobalContext();
+
+  if (!isLoading && isLoggedIn) return <Redirect href="/feed" />;
+
   return (
     <SafeAreaView className="h-full items-center bg-white">
       <View className="items-center w-full h-full justify-between px-8">
