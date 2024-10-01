@@ -15,9 +15,7 @@ const Connections = () => {
     <SafeAreaView className="flex-1 items-center">
       <Back />
       <View className="w-full p-4 h-full">
-        <Text className="text-xs font-pbold text-gray-500">
-          NEW CONNECTIONS
-        </Text>
+        <Text className="text-xs font-pbold text-gray-500">NEARBY USERS</Text>
         <ScrollView>
           <View className="h-full flex-row flex-wrap gap-5 mt-5 items-center ">
             {connections.map((value) => (
