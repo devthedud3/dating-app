@@ -3,8 +3,9 @@ import {
   Text,
   SafeAreaView,
   Image,
-  ScrollView,
+  Platform,
   Alert,
+  KeyboardAvoidingView,
 } from "react-native";
 import React, { useState } from "react";
 import { Link, router } from "expo-router";
@@ -22,7 +23,8 @@ import {
 
 const SignUp = () => {
   const [form, setForm] = useState({
-    username: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
@@ -60,54 +62,76 @@ const SignUp = () => {
   };
 
   return (
-    <SafeAreaView className="h-full flex items-center justify-center">
-      <Back />
-      <View className="px-4 w-full min-h-[83vh] items-center">
-        <Image
-          source={icons.logo_small}
-          resizeMode="contain"
-          className="h-12 w-12 mb-5"
-        />
-        <Text className="text-2xl font-pbold">Create a new account</Text>
-        <Text className="font-pregular text-center px-6 text-zinc-600">
-          Small distance, big results—start networking locally today.
-        </Text>
-        <FormField
-          name="Username"
-          value={form.username}
-          formStyles="mt-5 w-full"
-          keyboardType="text"
-          onChange={(e) => setForm({ ...form, username: e })}
-        />
-        <FormField
-          name="Email"
-          value={form.email}
-          formStyles="mt-5 w-full"
-          keyboardType="email-address"
-          onChange={(e) => setForm({ ...form, email: e })}
-        />
-        <FormField
-          name="Password"
-          value={form.password}
-          formStyles="mt-5 w-full"
-          keyboardType="password"
-          onChange={(e) => setForm({ ...form, password: e })}
-        />
-        <Btn
-          title="Create Account"
-          containerStyles="w-full mt-5"
-          primary
-          handlePress={createAccount}
-          isLoading={isSubmitting}
-        />
-        <Text className="font-pregular text-center mt-5">
-          Already have an account?{" "}
-          <Link className="font-pregular text-primary" href="/sign-in">
-            Log in here
-          </Link>
-        </Text>
-        <Link href="/feed">Feed</Link>
-      </View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+      <KeyboardAvoidingView
+        style={{
+          flex: 1,
+          justifyContent: "center",
+        }}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={80}
+      >
+        <View behavior="position" className="p-4 w-full h-auto items-center">
+          <Image
+            source={icons.logo_small}
+            resizeMode="contain"
+            className="h-24 w-24 mb-5"
+          />
+          <Text className="text-2xl font-pbold">Create a new account</Text>
+          <Text className="font-pregular text-center px-6 text-zinc-600">
+            Small distance, big results—start networking locally today.
+          </Text>
+          {/* <View className="flex flex-row mt-10">
+            <FormField
+              name="First Name"
+              value={form.username}
+              formStyles="flex-1 mr-1"
+              keyboardType="default"
+              placeholder="Chicken"
+              onChange={(e) => setForm({ ...form, firstName: e })}
+            />
+            <FormField
+              name="Last Name"
+              value={form.username}
+              formStyles="flex-1 ml-1"
+              keyboardType="default"
+              placeholder="Smith"
+              onChange={(e) => setForm({ ...form, lastName: e })}
+            />
+          </View> */}
+          <FormField
+            name="Email"
+            value={form.email}
+            formStyles="mt-5 w-full"
+            keyboardType="email-address"
+            placeholder="email@example.com"
+            onChange={(e) => setForm({ ...form, email: e })}
+          />
+          <FormField
+            name="Mobile Number"
+            value={form.password}
+            formStyles="mt-5 w-full"
+            keyboardType="password"
+            secureTextEntry
+            placeholder="1 (212) 234-5678"
+            onChange={(e) => setForm({ ...form, password: e })}
+          />
+          <Btn
+            title="Create Account"
+            containerStyles="w-full mt-5"
+            primary
+            handlePress={createAccount}
+            isLoading={isSubmitting}
+          />
+          <Text className="font-pregular text-center mt-5">
+            Already have an account?{" "}
+            <Link className="font-pregular text-primary" href="/sign-in">
+              Log in here
+            </Link>
+          </Text>
+          <Link href="/feed">Feed</Link>
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
