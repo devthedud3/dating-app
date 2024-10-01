@@ -16,7 +16,7 @@ const Btn = ({
       onPress={handlePress}
       className={`${
         primary ? "bg-primary" : "border border-gray-300"
-      } justify-center min-h-[48px] items-center rounded-lg ${containerStyles} ${
+      } justify-center min-h-[48px] items-center rounded-sm ${containerStyles} ${
         isLoading && "opacity-50"
       }`}
     >
